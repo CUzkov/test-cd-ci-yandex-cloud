@@ -13,11 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
   
-      - name: colllect-static
+      - name: install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: colllect-and-build-static
         run: |
           git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git
-
-      - name: Deploy to sandbox via rsync
+          cd ./2021_1_Noskool-team
+          npm i
+          npm run build
+          cp ./out/index.html ./build/
+          cd ..
+      - name: Deploy to server via rsync
         uses: trendyminds/github-actions-rsync@master
         with:
           RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
