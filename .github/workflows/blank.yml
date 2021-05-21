@@ -30,7 +30,7 @@ jobs:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: build-static
         run: |
-          ssh -i $SSH_KEY_PATH user@84.201.189.81
+          ssh -i $SSH_KEY_PATH cuzkov@84.201.189.81
           ls
         env:
           SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
