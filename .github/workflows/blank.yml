@@ -21,6 +21,5 @@ jobs:
         run: ssh-keyscan -H 84.201.189.81 >> ~/.ssh/known_hosts
       - name: Deploy with rsync
         run: |
-          git status
-          sudo touch cat.txt
-          sudo rsync -avz ./cat.txt cuzkov@84.201.189.81:/
+          git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git          
+          sudo rsync -avz ./2021_1_Noskool-team cuzkov@84.201.189.81:/
