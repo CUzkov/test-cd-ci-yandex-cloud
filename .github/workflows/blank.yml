@@ -20,4 +20,4 @@ jobs:
           git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git    
           ls
           echo "123"
-          sudo rsync -avz ./2021_1_Noskool-team cuzkov@84.201.189.81:/
+          sudo rsync -avz -e "ssh -p 22" ./2021_1_Noskool-team cuzkov@84.201.189.81:/
