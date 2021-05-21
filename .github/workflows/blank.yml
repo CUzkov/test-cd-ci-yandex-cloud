@@ -32,3 +32,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
           SSH_USERNAME: cuzkov
           SSH_HOSTNAME: 84.201.189.81
+
