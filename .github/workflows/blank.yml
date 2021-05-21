@@ -18,8 +18,10 @@ jobs:
         env:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: Adding Known Hosts
-        run: ssh-keyscan -H 84.201.189.81 >> ~/.ssh/known_hosts
+        run: ssh-keyscan -R -H 84.201.189.81 >> ~/.ssh/known_hosts
       - name: Deploy with rsync
         run: |
-          git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git          
+          git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git    
+          ls
+          echo "123"
           sudo rsync -avz ./2021_1_Noskool-team cuzkov@84.201.189.81:/
