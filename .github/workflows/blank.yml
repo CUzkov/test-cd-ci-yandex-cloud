@@ -21,5 +21,6 @@ jobs:
         run: ssh-keyscan -H 84.201.189.81 >> ~/.ssh/known_hosts
       - name: Deploy with rsync
         run: |
-          touch cat.txt
-          rsync -avz ./cat.txt cuzkov@84.201.189.81:/
+          git status
+          sudo touch cat.txt
+          sudo rsync -avz ./cat.txt cuzkov@84.201.189.81:/
