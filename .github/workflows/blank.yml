@@ -31,10 +31,9 @@ jobs:
       - name: build-static
         run: |
           ssh -i $SSH_KEY_PATH cuzkov@84.201.189.81
-          cd frontend
-          sudo apt install git
-          git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git
-          cd ./2021_1_Noskool-team
+          echo "123"
+          ls
+          echo "123"
         env:
           SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.KNOW_HOSTS}}
