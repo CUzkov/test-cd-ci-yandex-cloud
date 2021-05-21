@@ -10,14 +10,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.PRIVATE_KEY }} 
-          known_hosts: ${{secrets.KNOW_HOSTS}}
-      - name: Deploy with rsync
+      - name: Checkout code
+        uses: actions/checkout@v1
+  
+      - name: colllect-static
         run: |
-          git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git    
-          ls
-          echo "123"
-          sudo rsync -avz -e "ssh -p 22" ./2021_1_Noskool-team cuzkov@84.201.189.81:/
+          git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git
+
+      - name: Deploy to sandbox via rsync
+        uses: trendyminds/github-actions-rsync@master
+        with:
+          RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
+          RSYNC_TARGET: /
+          RSYNC_SOURCE: /2021_1_Noskool-team
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
+          SSH_USERNAME: cuzkov
+          SSH_HOSTNAME: 84.201.189.81
