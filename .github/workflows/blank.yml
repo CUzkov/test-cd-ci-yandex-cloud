@@ -31,7 +31,7 @@ jobs:
         with:
           RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
           RSYNC_TARGET: /home/cuzkov/frontend
-          RSYNC_SOURCE: /2021_1_Noskool-team
+          RSYNC_SOURCE: /2021_1_Noskool-team/build
         env:
           SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
           SSH_USERNAME: cuzkov
