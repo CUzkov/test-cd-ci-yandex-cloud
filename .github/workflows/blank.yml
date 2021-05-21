@@ -10,27 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Create SSH key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../private.key
-          sudo chmod 600 ../private.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.PRIVATE_KEY }} 
+          known_hosts: 'dawd'
         env:
-          SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.KNOW_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
-      - name: build-static
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H 84.201.189.81 >> ~/.ssh/known_hosts
+      - name: Deploy with rsync
         run: |
-          ssh -i $SSH_KEY_PATH cuzkov@84.201.189.81
-        env:
-          SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.KNOW_HOSTS}}
-          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
-      - name: fd
-        run: |
-            echo "123"
-            mkdir fro
-            ls
-            echo "123"
+          touch cat.txt
+          rsync -avz ./cat.txt cuzkov@84.201.189.81:/home/zellwk/zellwk.com/dist/
