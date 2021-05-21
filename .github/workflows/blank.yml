@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-
       - name: colllect-and-build-static
         run: |
           git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git
