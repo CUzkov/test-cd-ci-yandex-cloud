@@ -22,4 +22,4 @@ jobs:
       - name: Deploy with rsync
         run: |
           touch cat.txt
-          rsync -avz ./cat.txt cuzkov@84.201.189.81:/home/zellwk/zellwk.com/dist/
+          rsync -avz ./cat.txt cuzkov@84.201.189.81:/
