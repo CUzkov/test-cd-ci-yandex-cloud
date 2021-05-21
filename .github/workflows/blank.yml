@@ -22,6 +22,8 @@ jobs:
         run: |
           git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git
           cd ./2021_1_Noskool-team
+          git checkout dev
+          mv -f ./src/constants/api.product.ts ./src/constants/api.ts
           npm i
           npm run build
           cp ./out/index.html ./build/
