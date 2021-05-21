@@ -32,7 +32,7 @@ jobs:
         run: |
           ssh -i $SSH_KEY_PATH cuzkov@84.201.189.81
           echo "123"
-          ls
+          mkdir fro
           echo "123"
         env:
           SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
