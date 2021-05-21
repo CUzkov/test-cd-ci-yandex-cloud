@@ -21,7 +21,7 @@ jobs:
         uses: trendyminds/github-actions-rsync@master
         with:
           RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
-          RSYNC_TARGET: /frontend
+          RSYNC_TARGET: /front
           RSYNC_SOURCE: /2021_1_Noskool-team
         env:
           SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
