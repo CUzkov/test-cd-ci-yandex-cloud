@@ -18,7 +18,9 @@ jobs:
         env:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: Adding Known Hosts
-        run: echo ${{ secrets.KNOW_HOSTS }} >> ~/.ssh/known_hosts
+        run: echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        env:
+          SSH_KNOWN_HOSTS: ${{secrets.KNOW_HOSTS}}
       - name: Deploy with rsync
         run: |
           git clone https://github.com/frontend-park-mail-ru/2021_1_Noskool-team.git    
